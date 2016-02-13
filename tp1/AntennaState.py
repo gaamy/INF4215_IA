@@ -70,7 +70,7 @@ class AntennaState(State):
 
         print ("Remaining points to cover:  %s "  %(len(self.pointList) - len(self.coveredPoints)))
         print ("Cost remaining to reach the target:  h(n)= %s" %(self.heuristic()))
-        print ("Cost to reach the current state: g(n)= %s" %(self._g_()))
+        print ("Cost to reach the current state: g(n)= %s" %(self.g()))
         print ("Total cost:  f(n)=%s" %(self.f()))
         print ("#Steps=  %s" %(self.counter))
 
@@ -85,41 +85,26 @@ class AntennaState(State):
 
 
     # State is changed according to action
-    #Params: (self,action)
-    def executeActions(self,(actionName,pointList)):
+    #Params:  (actionName,pointList)
+    def executeActions(self,action):
+        actionName = action[0]
         self.counter += 1
         if actionName == 'addSimpleAntenna':
-            # in this context, pointList[0] ] are  the point to cover
-            location = pointList[0]
-            self.antennaList.append(Antenna(location, 1))
+            newPoint = action[2]
+            self.antennaList.append(Antenna(newPoint))
         elif actionName == 'addAntennaBetween2':
-            # in this context, pointList[0] and pointList[1] are the 2 point to cover whit a new antenna
-            middlePoint = self._centroid_(pointList[0],pointList[1])
-            newRadius = self._distanceBetweenPoints_(middlePoint,pointList[0])
-            self.antennaList.append(Antenna(middlePoint, newRadius))
-        elif actionName == 'growAntenaRadius':
-            oldAntennaPosition = pointList[0]
-            newPoint = pointList[1]
-            coveredPoints = self._pointsCoveredBy_(oldAntennaPosition,coveredPoints)
-            coveredPoints.append(newPoint)
-            newAntennaPosition = self._centroid_(coveredPoints)
-            newRadius = self._farestFrom_(newAntennaPosition,coveredPoints)
+            newPoint1 = action[1]
+            newPoint2 = action[2]
+            self.antennaList.append(Antenna[newPoint1,newPoint2])
+        elif actionName == 'growAntenna':
+            oldAntennaPosition = action[1]
+            newPoint = action[2]
             oldAntenna = self._antennaAt_(oldAntennaPosition)
-            self.antennaList.remove(oldAntenna)
-            self.antennaList.append(Antenna(newAntennaPosition, newRadius))
-        elif actionName == 'shrinkAntenaRadius':
-            oldAntennaPosition = pointList[0]
-            pointToRemove = pointList[1]
-            coveredPoints = self._pointsCoveredBy_(oldAntennaPosition,self.coveredPoints)
-            coveredPoints.remove(pointToRemove)
-            newAntennaPosition = self._centroid_(coveredPoints)
-            newRadius = self._farestFrom_(newAntennaPosition,coveredPoints)
-            self.antennaList.remove(self._antennaAt_(oldAntennaPosition))
-            self.antennaList.append(Antenna(newAntennaPosition, newRadius))
-       # elif actionName == 'removeAntenna':
-
-        #    antennaPosition = pointList[0]
-         #   self.antennaList.remove(self._antennaAt_(antennaPosition))
+            oldAntenna.addPoint(newPoint)
+        elif actionName == 'shrinkAntenna':
+            oldAntennaPosition = action[1]
+            oldAntenna = self._antennaAt_(oldAntennaPosition)
+            oldAntenna.shrink()
         else:
             raise Exception('Erreur')
 
@@ -130,8 +115,6 @@ class AntennaState(State):
         for point in self.pointList:
             actionList.append(('addSimpleAntenna',point))
         #action 2: antenne entre les 2 point les plus proches non couverts
-            #(pointA,pointB) = self._closestPoints_(self.uncoveredPoints())
-            #actionList.append('addAntennaBetween2',pointA,pointB)
         visitedPoints = []
         for pt1 in self.pointList:
             for pt2 in self.pointList:
@@ -139,88 +122,52 @@ class AntennaState(State):
                     if self._distanceBetweenPoints_(pt1,pt2) <= self.smallDistance:
                         actionList.append(('addAntennaBetween2',pt1,pt2))
             visitedPoints.append(pt1)
-        #action 3: entre les antennes existantes, ajouter le point le plus proche en se positionnant au centroid du nouvel enssemble de points
+        #action 3 et 4
         if len(self.antennaList) > 0:
             for antenna in self.antennaList:
-                if len(self._pointsCoveredBy_(antenna)) > 1:
+                if len(antenna.affectedPoints) >= 1:
+                    #action 3: entre les antennes existantes, ajouter le point le plus proche de l'antenne non couvert
                     nearestPoint = self._nearestFrom_( antenna.position, self._uncoveredPoints_())
-                    actionList.append(('growAntenaRadius',antenna.position, nearestPoint))
-        #action 4: entre les antennes existantes, retirer le point le plus loin de l'antenne en se positionnant au centroid du nouvel enssemble de points
-            for antenna in self.antennaList:
-                if len(self._pointsCoveredBy_(antenna)) > 1:
-                    affectedPoints = self._pointsCoveredBy_(antenna)
-                    pointToExclude = self._farestFrom_(antenna.position,affectedPoints)
-                    actionList.append(('shrinkAntenaRadius',antenna.position, pointToExclude))
-                #else:
-                 #   actionList.append(('removeAntenna',antenna.position))
-
+                    actionList.append(('growAntenna',antenna.position, nearestPoint))
+                    #action 4: entre les antennes existantes, retirer le point le plus loin couvert par l'antenne
+                    actionList.append(('shrinkAntenna',antenna.position))
         return actionList
+
 
     # Returns the cost of executing some action
     # By default, we suppose that all actions have the same cost = 1
     # action >> (actionName,pointList)
     def cost(self,action):
-        if action[0] == 'addSimpleAntenna':
-            return self.K
-        elif action[0] == 'addAntennaBetween2':
-            return self.K + self.C * (self.smallDistance/2)**2
-        elif action[0] == 'growAntenaRadius':
-            return self.C * (self.smallDistance/2)**2 - self.K
-        elif action[0] == 'shrinkAntenaRadius':
-            return  -self.C * (self.smallDistance/2)**2
-
-
-        """
-        actionName = action[0]
+        self.counter += 1
         #calculate current cost _g_()
-        baseCost = self._g_()
+        baseCost = self.g()
         #make a copy of the current state
         newState = copy.deepcopy(self)
         #apply the action changes on the copyed state
+        actionName = action[0]
         if actionName == 'addSimpleAntenna':
-            # in this context, pointList[0] ] are  the point to cover
-            location = action[1]
-            self.antennaList.append(Antenna(location,1))
+            newPoint = action[1]
+            self.antennaList.append(Antenna(newPoint))
         elif actionName == 'addAntennaBetween2':
             newPoint1 = action[1]
             newPoint2 = action[2]
-            middlePoint = self._centroid_([newPoint1,newPoint2])
-            newRadius =  self._farestFrom_(middlePoint, [newPoint1,newPoint2])
-            self.antennaList.append(Antenna(middlePoint, newRadius))
-        elif actionName == 'growAntenaRadius':
+            self.antennaList.append(Antenna[newPoint1,newPoint2])
+        elif actionName == 'growAntenna':
             oldAntennaPosition = action[1]
             newPoint = action[2]
-            coveredPoints = self._pointsCoveredBy_(oldAntennaPosition)
-            coveredPoints.append(newPoint)
-            newAntennaPosition = self._centroid_(coveredPoints)
-            newRadius = self._farestFrom_(newAntennaPosition,coveredPoints)
             oldAntenna = self._antennaAt_(oldAntennaPosition)
-            self.antennaList.remove(oldAntenna)
-            self.antennaList.append(Antenna(newAntennaPosition, newRadius))
-        elif actionName == 'shrinkAntenaRadius':
+            oldAntenna.addPoint(newPoint)
+        elif actionName == 'shrinkAntenna':
             oldAntennaPosition = action[1]
-            pointToRemove = action[2]
-            coveredPoints = self._pointsCoveredBy_(oldAntennaPosition)
-            coveredPoints.remove(pointToRemove)
-            newAntennaPosition = self._centroid_(coveredPoints)
-            newRadius = self._farestFrom_(newAntennaPosition,coveredPoints)
             oldAntenna = self._antennaAt_(oldAntennaPosition)
-            self.antennaList.remove(oldAntenna)
-            self.antennaList.append(Antenna(newAntennaPosition, newRadius))
-        elif actionName == 'removeAntenna':
-            antennaPosition = action[1]
-            self.antennaList.remove(self._antennaAt_(antennaPosition))
-
+            oldAntenna.shrink()
 
         #calculates _g_() for the modified state
-        newCost = newState._g_()
+        newCost = newState.g()
 
         return newCost - baseCost
-        """
 
-    # for A* purposes
-    def f(self):
-        return self.heuristic() + self._g_()
+
 
     # Returns a heuristic value that provides an estimate of the remaining
     # cost to achieve the goal. By default, value is 0
@@ -232,7 +179,7 @@ class AntennaState(State):
      ### Private methods ####
     # g(n) represents the exact cost of the path from the starting point
     # to any vertex n
-    def _g_(self):
+    def g(self):
         cost = 0
         if self.antennaList != None:
             for antenna in self.antennaList:
@@ -240,6 +187,8 @@ class AntennaState(State):
                     cost += self.K + self.C * antenna.radius**2
         return cost
 
+    def f(self):
+        return self.g() + self.heuristic()
 
     #M(A,B)
     #Return the distance between 2 points
@@ -264,16 +213,6 @@ class AntennaState(State):
             if point1 != referencePoint and self._distanceBetweenPoints_(point1,referencePoint) < self._distanceBetweenPoints_(pointA,referencePoint):
                 pointA = point1
         return pointA
-
-    #return all the points covered by "antenna"
-    def _pointsCoveredBy_(self,antennaPosition):
-        antenna = self._antennaAt_(antennaPosition)
-        coveredPoints = []
-        if self.coveredPoints != None :
-            for point in self.coveredPoints:
-                if self._distanceBetweenPoints_(antenna,point) <= antenna.radius:
-                    coveredPoints.append(point)
-        return coveredPoints
 
 
     def _uncoveredPoints_(self):
@@ -307,15 +246,6 @@ class AntennaState(State):
 
         return None
 
-    #return the central point of a group of points
-    def _centroid_(self,pointList):
-        sum_x = 0
-        sum_y = 0
-        length = len(pointList)
-        for point in pointList:
-            sum_x += point[0]
-            sum_y += point[1]
-        return sum_x/float(length), sum_y/float(length)
 
     #return an estimate distance of "near" points scanning all points
     #this value is used to estimate where is worth to put an antenna betewen 2 points
