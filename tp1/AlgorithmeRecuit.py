@@ -321,5 +321,3 @@ end = time.time()
 print '{} seconds'.format(end-start)
 
 
-
-#search([(30,0),(10,10),(20,20),(30,40),(50,40)],200,1)
