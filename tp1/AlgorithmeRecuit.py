@@ -313,10 +313,10 @@ class AlgorithmeRecuitState(State):
 
 start = time.time()
 positionDesAntennes = ([(30,0),(10,10),(20,20),(30,40),(50,40)],200,1)
-q = AlgorithmeRecuit(positionDesAntennes)
+q = AlgorithmeRecuitState(positionDesAntennes)
 while simulated_annealing_search(q,0.1,0.01,100) == None:
     print "Restart..."
-    q = AlgorithmeRecuit(positionDesAntennes)
+    q = AlgorithmeRecuitState(positionDesAntennes)
 end = time.time()
 print '{} seconds'.format(end-start)
 
