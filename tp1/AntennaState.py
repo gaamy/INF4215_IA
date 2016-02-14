@@ -84,7 +84,6 @@ class AntennaState(State):
         #plt.plot()
 
 
-
     # Returns a list of possible actions with the current state
     def possibleActions(self):
         actionList = []
@@ -106,7 +105,7 @@ class AntennaState(State):
                     #action 3: entre les antennes existantes, ajouter le point le plus proche de l'antenne non couvert
                     actionList.append(('growAntenna',antenna.position))
                     #action 4: entre les antennes existantes, retirer le point le plus loin couvert par l'antenne
-                    actionList.append(('shrinkAntenna',antenna.position))
+                    #actionList.append(('shrinkAntenna',antenna.position))
         return actionList
 
      # State is changed according to action
@@ -128,12 +127,13 @@ class AntennaState(State):
         elif actionName == 'growAntenna':
             antennaPosition = action[1]
             nearestPoint = self._nearestFrom_(antennaPosition, self.uncoveredPoints())
-            antenna = self._antennaAt_(antennaPosition)
-            antenna.addPoint(nearestPoint)
-        elif actionName == 'shrinkAntenna':
-            oldAntennaPosition = action[1]
-            oldAntenna = self._antennaAt_(oldAntennaPosition)
-            oldAntenna.shrink()
+            if nearestPoint != None:
+                antenna = self._antennaAt_(antennaPosition)
+                antenna.addPoint(nearestPoint)
+        #elif actionName == 'shrinkAntenna':
+            #oldAntennaPosition = action[1]
+            #oldAntenna = self._antennaAt_(oldAntennaPosition)
+            #oldAntenna.shrink()
         else:
             raise Exception('Erreur')
 
@@ -227,7 +227,7 @@ class AntennaState(State):
                     pointA = point1
             return pointA
         else:
-            return referencePoint
+            return None
 
     def uncoveredPoints(self):
         if self.coveredPoints() == None:
@@ -297,10 +297,12 @@ class AntennaState(State):
 
 
 
-#initialState = AntennaState([(10,10),(20,20),(30,0),(30,40),(50,40)],200,1)
+initialState = AntennaState([(10,10),(20,20),(30,0),(30,40),(50,40)],200,1)
 
 
-initialState = AntennaState([(10,10),(20,20)],200,1)
+
+
+#initialState = AntennaState([(10,10),(20,20)],200,1)
 
 solution = astar_search(initialState)
 
