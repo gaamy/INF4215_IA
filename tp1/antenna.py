@@ -7,6 +7,7 @@ class Antenna:
     def __init__(self):
         self.radius = 1
         self.affectedPoints = []
+        self.position = Point(0,0)
 
     def addPointList(self,pointlist):
         self.affectedPoints.extend(pointlist)
@@ -22,13 +23,15 @@ class Antenna:
         self.updateAntenna()
 
     def shrink(self):
-        self.deletePoint(self.farPoint())
+        pointToRemove = self.farPoint()
+        if pointToRemove != None:
+            self.deletePoint(pointToRemove)
 
     def updateAntenna(self):
         amountOfAfectedPoints = len(self.affectedPoints)
         if amountOfAfectedPoints <= 0:
             self.radius = 0
-            self.position = (0,0)
+            self.position = Point(0,0)
         elif amountOfAfectedPoints == 1:
             self.position = self.affectedPoints[0]
             self.radius = 1
@@ -39,7 +42,7 @@ class Antenna:
 
     #return the central point of a group of points
     def centroid(self,pointList):
-        if len(pointList) > 0:
+        if pointList :
             sum_x = 0
             sum_y = 0
             length = len(pointList)
@@ -56,11 +59,11 @@ class Antenna:
 
     #return the most distant point covered by the antenna  in pointList
     def farPoint(self):
-        if len(self.affectedPoints) > 0 :
-            pointA = self.affectedPoints[0]
+        if self.affectedPoints :
+            pointA = self.affectedPoints.pop()
             for point1 in self.affectedPoints:
                 if self.distanceBetween(point1,self.position) > self.distanceBetween(pointA,self.position):
                     pointA = point1
             return pointA
         else:
-            return self.position
+            return None

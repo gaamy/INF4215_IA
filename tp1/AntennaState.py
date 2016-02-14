@@ -16,7 +16,6 @@ class AntennaState(State):
 
     threshold = 1000
 
-
     def __init__(self,coordinateList,K,C):
         self.K = K
         self.C = C
@@ -51,17 +50,21 @@ class AntennaState(State):
     # The alternative is to stop searching after a predetermined amount of
     # actions verifying if we covered all the points
     def isGoal(self):
+        return False
+        """
         if self.counter > self.threshold and self.coveredPoints == len(self.pointList):
         #if self.counter > self.threshold :
             return True
         else:
             return False
+        """
 
     # Prints to the console a description of the state
     def show(self):
-        print("Covered points:  %s  " % (len(self.coveredPoints())))
 
-        print ("Remaining points to cover:  %s "  %(len(self.pointList) - len(self.coveredPoints())))
+        #print("Covered points:  %s  " % (len(list(set(self.pointList)-set(self.uncoveredPoints())))))
+
+        print ("Remaining points to cover:  %s "  %(len(self.uncoveredPoints())))
         print ("Cost remaining to reach the target:  h(n)= %s" %(self.heuristic()))
         print ("Cost to reach the current state: g(n)= %s" %(self.g()))
         print ("Total cost:  f(n)=%s" %(self.f()))
@@ -75,6 +78,8 @@ class AntennaState(State):
                 print(" position= (%s,%s) " %(antenna.position.x,antenna.position.y))
                 print(" r=%s" %(antenna.radius))
                 print("--------------------------------------")
+
+
 
 
 
@@ -134,6 +139,7 @@ class AntennaState(State):
     # Returns the cost of executing some action
     # By default, we suppose that all actions have the same cost = 1
     # action >> (actionName,pointList)
+    """
     def cost(self,action):
         self.counter += 1
         #calculate current cost _g_()
@@ -163,25 +169,33 @@ class AntennaState(State):
         newCost = newState.g()
 
         return newCost - baseCost
-
+    """
 
 
     # Returns a heuristic value that provides an estimate of the remaining
     # cost to achieve the goal. By default, value is 0
     def heuristic(self):
+        return 0
+        """
         if self.coveredPoints() != None:
+
+
+            e = len(self.pointList)
+            t = self.coveredPoints()
+            a = len(t)
+
             amountOfRemainingPoints = len(self.pointList) - len(self.coveredPoints())
             return amountOfRemainingPoints * self.K
         else:
             return len(self.pointList)*self.K
-
+        """
 
      ### Private methods ####
     # g(n) represents the exact cost of the path from the starting point
     # to any vertex n
     def g(self):
         cost = 0
-        if len(self.antennaList) > 0:
+        if self.antennaList:
             for antenna in self.antennaList:
                 cost += self.K + self.C * antenna.radius**2
         return cost
@@ -207,27 +221,30 @@ class AntennaState(State):
 
     #return the less distant point from referencePoint in pointList
     def _nearestFrom_(self,referencePoint,pointList):
-        pointA = pointList[1]
-        for point1 in pointList:
-            if point1 != referencePoint and self.distanceBetween(point1, referencePoint) < self.distanceBetween(pointA, referencePoint):
-                pointA = point1
-        return pointA
-
+        if pointList:
+            pointA = pointList.pop()
+            for point1 in pointList:
+                if point1 != referencePoint and self.distanceBetween(point1, referencePoint) < self.distanceBetween(pointA, referencePoint):
+                    pointA = point1
+            return pointA
+        else:
+            return referencePoint
 
     def uncoveredPoints(self):
         if self.coveredPoints() == None:
             return self.pointList
         else:
+           # l = self.coveredPoints()
             return list(set(self.pointList) - set(self.coveredPoints()))
 
 
     def coveredPoints(self):
         coveredPointList = []
-        if len(self.antennaList) > 0:
+        if self.antennaList:
             for antenna in self.antennaList:
                 for coveredPoint in antenna.affectedPoints:
                     coveredPointList.append(coveredPoint)
-            return coveredPointList
+            return list(set(coveredPointList))
         else:
             return None
 
@@ -242,7 +259,7 @@ class AntennaState(State):
                     pointA = point1
             return pointA
         else:
-            return referencePoint
+            return None
 
     # Return the coordinate in between 2 points
     #def _middlePoint_(self,point1,point2):
@@ -285,5 +302,7 @@ initialState = AntennaState([(30,0),(10,10),(20,20),(30,40),(50,40)],200,1)
 
 solution = astar_search(initialState)
 
+
 print("Solution  is %s  " % (solution))
+
 
