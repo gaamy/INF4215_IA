@@ -52,13 +52,11 @@ class AntennaState(State):
     # actions verifying if we covered all the points
     def isGoal(self):
         return False
-        """
-        if self.counter > self.threshold and self.coveredPoints == len(self.pointList):
+        #if self.counter > self.threshold and self.coveredPoints == len(self.pointList):
         #if self.counter > self.threshold :
-            return True
-        else:
-            return False
-        """
+            #return True
+        #else:
+            #return False
 
     # Prints to the console a description of the state
     def show(self):
@@ -105,7 +103,7 @@ class AntennaState(State):
                     #action 3: entre les antennes existantes, ajouter le point le plus proche de l'antenne non couvert
                     actionList.append(('growAntenna',antenna.position))
                     #action 4: entre les antennes existantes, retirer le point le plus loin couvert par l'antenne
-                    #actionList.append(('shrinkAntenna',antenna.position))
+                    actionList.append(('shrinkAntenna',antenna.position))
         return actionList
 
      # State is changed according to action
@@ -130,10 +128,10 @@ class AntennaState(State):
             if nearestPoint != None:
                 antenna = self._antennaAt_(antennaPosition)
                 antenna.addPoint(nearestPoint)
-        #elif actionName == 'shrinkAntenna':
-            #oldAntennaPosition = action[1]
-            #oldAntenna = self._antennaAt_(oldAntennaPosition)
-            #oldAntenna.shrink()
+        elif actionName == 'shrinkAntenna':
+            oldAntennaPosition = action[1]
+            oldAntenna = self._antennaAt_(oldAntennaPosition)
+            oldAntenna.shrink()
         else:
             raise Exception('Erreur')
 
@@ -297,7 +295,14 @@ class AntennaState(State):
 
 
 
-initialState = AntennaState([(10,10),(20,20),(30,0),(30,40),(50,40)],200,1)
+import random as rand
+
+initialPoints = [(10,10),(20,20),(30,0),(30,40),(50,40)]
+
+#initial =
+
+initialState = AntennaState(initialPoints,200,1)
+
 
 
 
