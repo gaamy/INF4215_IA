@@ -60,7 +60,7 @@ class Antenna:
     #return the most distant point covered by the antenna  in pointList
     def farPoint(self):
         if self.affectedPoints :
-            pointA = self.affectedPoints.pop()
+            pointA = self.affectedPoints[0]
             for point1 in self.affectedPoints:
                 if self.distanceBetween(point1,self.position) > self.distanceBetween(pointA,self.position):
                     pointA = point1

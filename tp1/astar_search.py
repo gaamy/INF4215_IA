@@ -15,7 +15,7 @@ def astar_search(initialState):
         node.state.show()
         print '----------------'
         if node.state.isGoal():
-            #node.state.show()
+            node.state.show()
             #print 'Cost:', node.g
             #print 'Steps:', step
             return node

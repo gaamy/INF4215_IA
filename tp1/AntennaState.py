@@ -5,6 +5,7 @@
 
 from node import *
 from state import *
+import matplotlib.pyplot as plt
 from antenna import *
 from point import *
 from astar_search import *
@@ -73,14 +74,14 @@ class AntennaState(State):
         print 'Placed antennas:'
         if self.antennaList != None:
             for antenna in self.antennaList:
+                print("---Antenna# %s position=(%s,%s) r= %s"
+                      %(self.antennaList.index(antenna),
+                        antenna.position.x,
+                        antenna.position.y,
+                        antenna.radius)
+                      )
 
-                print("-----Antenna # %s"  %(self.antennaList.index(antenna)))
-                print(" position= (%s,%s) " %(antenna.position.x,antenna.position.y))
-                print(" r=%s" %(antenna.radius))
-                print("--------------------------------------")
-
-
-
+        #plt.plot()
 
 
 
@@ -175,8 +176,6 @@ class AntennaState(State):
     # Returns a heuristic value that provides an estimate of the remaining
     # cost to achieve the goal. By default, value is 0
     def heuristic(self):
-        return 0
-        """
         if self.coveredPoints() != None:
 
 
@@ -188,7 +187,7 @@ class AntennaState(State):
             return amountOfRemainingPoints * self.K
         else:
             return len(self.pointList)*self.K
-        """
+
 
      ### Private methods ####
     # g(n) represents the exact cost of the path from the starting point
@@ -298,7 +297,10 @@ class AntennaState(State):
 
 
 
-initialState = AntennaState([(30,0),(10,10),(20,20),(30,40),(50,40)],200,1)
+#initialState = AntennaState([(10,10),(20,20),(30,0),(30,40),(50,40)],200,1)
+
+
+initialState = AntennaState([(10,10),(20,20)],200,1)
 
 solution = astar_search(initialState)
 
