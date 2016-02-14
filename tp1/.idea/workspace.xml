@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7831342-242a-48f4-87ab-4bbc8ab97d55" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlgorithmeRecuit.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/beam_search.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/myState.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulated_annealing.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AntennaState.py" afterPath="$PROJECT_DIR$/AntennaState.py" />
     </list>
     <ignored path="tp1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -399,7 +394,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455474374339</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="+add local search files">
+      <created>1455475100127</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1455475100127</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -506,7 +507,8 @@
     <MESSAGE value="the code runs, but dont do what i want.... &#10;tryng to chage the h(n) and g(n)" />
     <MESSAGE value="+testing class Antenna" />
     <MESSAGE value="+should work for treesarch" />
-    <option name="LAST_COMMIT_MESSAGE" value="+should work for treesarch" />
+    <MESSAGE value="+add local search files" />
+    <option name="LAST_COMMIT_MESSAGE" value="+add local search files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
