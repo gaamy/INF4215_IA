@@ -16,7 +16,8 @@ def simulated_annealing_search(initialState,T = 100,limit = 0.1,maxSteps = 1000)
     temperature = T
     node = Node(initialState)
     while temperature > limit:
-        print temperature
+        #print temperature
+        #print node.state.show()
         step = maxSteps
         while step > 0:
             if node.state.isGoal():

@@ -66,12 +66,16 @@ class AlgorithmeRecuitState(State):
     # The alternative is to stop searching after a predetermined amount of
     # actions verifying if we covered all the points
     def isGoal(self):
+        coveredPoints = self.coveredPoints()
+        if coveredPoints:
+            if len(coveredPoints) == len(self.pointList):
+                self.optimise(coveredPoints)
+                return True
         return False
-        #if self.counter > self.threshold and self.coveredPoints == len(self.pointList):
-        #if self.counter > self.threshold :
-            #return True
-        #else:
-            #return False
+
+
+    def optimise(self,coveredPoints):
+        coveredPoints
 
     # Prints to the console a description of the state
     def show(self):
@@ -99,26 +103,27 @@ class AlgorithmeRecuitState(State):
 
     # Returns a list of possible actions with the current state
     def possibleActions(self):
+        uncoveredPoints = self.uncoveredPoints()
         actionList = []
+
         #action 1 : ajouter antenne sur 1 point
-        for point in self.uncoveredPoints():
-            actionList.append(('addSimpleAntenna',point))
+        point = random.choice(uncoveredPoints)
+        actionList.append(('addSimpleAntenna',point))
+
         #action 2: antenne entre les 2 point les plus proches non couverts
-        visitedPoints = []
-        for pt1 in self.uncoveredPoints():
-            for pt2 in self.uncoveredPoints():
-                if pt1 != pt2 and pt2 not in visitedPoints :
-                    if self.distanceBetween(pt1, pt2) <= self.smallDistance:
-                        actionList.append(('addAntennaBetween2',pt1,pt2))
-            visitedPoints.append(pt1)
-        #action 3 et 4
+
+        pt1 = random.choice(uncoveredPoints)
+        pt2 = random.choice(uncoveredPoints)
+        if pt1 != pt2 :
+           actionList.append(('addAntennaBetween2',pt1,pt2))
+
+
+        #action 3
         if len(self.antennaList) > 0:
-            for antenna in self.antennaList:
-                if len(antenna.affectedPoints) > 0:
-                    #action 3: entre les antennes existantes, ajouter le point le plus proche de l'antenne non couvert
-                    actionList.append(('growAntenna',antenna.position))
-                    #action 4: entre les antennes existantes, retirer le point le plus loin couvert par l'antenne
-                    actionList.append(('shrinkAntenna',antenna.position))
+            antenna = random.choice(self.antennaList)
+            if antenna.affectedPoints:
+                actionList.append(('growAntenna',antenna.position))
+
         return actionList
 
      # State is changed according to action
@@ -143,10 +148,10 @@ class AlgorithmeRecuitState(State):
             if nearestPoint != None:
                 antenna = self._antennaAt_(antennaPosition)
                 antenna.addPoint(nearestPoint)
-        elif actionName == 'shrinkAntenna':
-            oldAntennaPosition = action[1]
-            oldAntenna = self._antennaAt_(oldAntennaPosition)
-            oldAntenna.shrink()
+        #elif actionName == 'shrinkAntenna':
+            #oldAntennaPosition = action[1]
+            #oldAntenna = self._antennaAt_(oldAntennaPosition)
+            #oldAntenna.shrink()
         else:
             raise Exception('Erreur')
 
@@ -311,13 +316,82 @@ class AlgorithmeRecuitState(State):
 
 
 
+"""
+X = (random.sample(range(1, 101), 100))
+Y = (random.sample(range(1, 101), 100))
+positionDesAntennes = []
+
+i = 0
+
+while i < len(X):
+    positionDesAntennes.append((X[i],Y[i]))
+    i+= 1
+print("PointList = %s" %(positionDesAntennes))
+"""
+"""
 start = time.time()
-positionDesAntennes = ([(30,0),(10,10),(20,20),(30,40),(50,40)],200,1)
-q = AlgorithmeRecuitState(positionDesAntennes)
+positionDesAntennes = ([(30,0),(10,10),(20,20),(30,40),(50,40)])
+
+q = AlgorithmeRecuitState(positionDesAntennes,200,1)
+
 while simulated_annealing_search(q,0.1,0.01,100) == None:
     print "Restart..."
-    q = AlgorithmeRecuitState(positionDesAntennes)
+    q = AlgorithmeRecuitState(positionDesAntennes,200,1)
 end = time.time()
 print '{} seconds'.format(end-start)
 
+"""
 
+"""
+start = time.time()
+positionDesAntennes = ([(30,0),(10,10),(20,20),(30,40),(50,40)])
+q = AlgorithmeRecuitState(positionDesAntennes,200,1)
+end = 0
+
+while end-start > 5000000:
+    while simulated_annealing_search(q,0.1,0.01,100) == None:
+        print "Restart..."
+        q = AlgorithmeRecuitState(positionDesAntennes, 200, 1)
+    #if simulated_annealing_search(q,0.1,0.01,100) is better:
+        #replace node
+    end = time.time()
+end = time.time()
+print '{} seconds'.format(end-start)
+"""
+
+start = time.time()
+#positionDesAntennes = ([(30,0),(10,10),(20,20),(30,40),(50,40)])
+#positionDesAntennes =[(486, 401), (88, 31), (489, 194), (174, 482), (276, 74), (250, 129), (402, 140), (374, 143), (328, 336), (14, 379), (441, 468), (362, 133), (256, 55), (7, 94), (469, 173), (100, 77), (42, 469), (252, 119), (51, 243), (204, 57), (456, 437), (292, 321), (107, 385), (94, 471), (69, 478), (280, 445), (285, 432), (20, 118), (421, 399), (68, 374), (212, 442), (416, 62), (171, 172), (460, 175), (499, 197), (161, 196), (435, 29), (228, 222), (258, 103), (106, 15), (481, 13), (312, 179), (266, 356), (130, 123), (154, 58), (194, 230), (425, 214), (159, 218), (413, 109), (450, 211), (183, 499), (259, 66), (253, 223), (49, 170), (308, 400), (241, 40), (338, 481), (93, 81), (384, 377), (431, 460), (390, 164), (76, 49), (30, 302), (492, 382), (136, 333), (124, 330), (223, 128), (363, 289), (487, 430), (78, 319), (172, 489), (263, 376), (57, 271), (339, 3), (168, 46), (257, 233), (485, 261), (25, 353), (109, 244), (197, 189), (235, 227), (142, 312), (86, 163), (265, 73), (278, 310), (316, 154), (394, 354), (403, 130), (34, 288), (46, 339), (301, 384), (125, 410), (412, 423), (420, 456), (237, 365), (50, 42), (97, 226), (104, 388), (182, 371), (131, 317)]
+
+import random
+X = (random.sample(range(1, 501), 500))
+Y = (random.sample(range(1, 501), 500))
+
+positionDesAntennes = []
+i = 0
+while i < len(X):
+    positionDesAntennes.append((X[i],Y[i]))
+    i+= 1
+print("PointList = %s" %(positionDesAntennes))
+
+
+q = AlgorithmeRecuitState(positionDesAntennes,200,1)
+end = 0
+bestnode = Node(q)
+bestnode.f = 1000000000000000
+while end-start < 20*60:
+    node = simulated_annealing_search(q,0.1,0.01,100)
+    while node == None:
+        print "Restart..."
+        q = AlgorithmeRecuitState(positionDesAntennes, 200, 1)
+        node = simulated_annealing_search(q,0.1,0.01,100)
+
+    if node.f < bestnode.f:
+        bestnode = node
+        q = AlgorithmeRecuitState(positionDesAntennes, 200, 1)
+    end = time.time()
+end = time.time()
+
+bestnode.state.show()
+
+print '{} seconds'.format(end-start)

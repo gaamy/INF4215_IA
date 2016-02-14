@@ -304,12 +304,12 @@ class AntennaState(State):
 
 import random
 
-initial = [(10,10),(20,20),(30,0),(30,40),(50,40)]
+#initial = [(10,10),(20,20),(30,0),(30,40),(50,40)]
 
 
-"""
-X = (random.sample(range(1, 101), 100))
-Y = (random.sample(range(1, 101), 100))
+
+X = (random.sample(range(1, 301), 300))
+Y = (random.sample(range(1, 301), 300))
 initial = []
 
 i = 0
@@ -320,7 +320,7 @@ while i < len(X):
     i+= 1
 
 print("PointList = %s" %(initial))
-"""
+
 
 initialState = AntennaState(initial,200,1,time=time.time())
 

@@ -47,7 +47,6 @@ class Node(object):
     ####################
     def _createNode(self,action):
         newState = copy.deepcopy(self.state)
-        newState.startTime
         newState.executeAction(action)
         return Node(newState, action, newState.g(), self) # self.g + self.state.cost(action)
                                     
