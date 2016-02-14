@@ -10,6 +10,7 @@
 import sys
 import math
 import copy
+import time
 
 class Node(object):
     def __init__(self, state, action = None, cost = 0, previous = None):
@@ -46,6 +47,7 @@ class Node(object):
     ####################
     def _createNode(self,action):
         newState = copy.deepcopy(self.state)
+        newState.startTime
         newState.executeAction(action)
         return Node(newState, action, newState.g(), self) # self.g + self.state.cost(action)
                                     

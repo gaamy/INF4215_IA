@@ -9,15 +9,15 @@ import matplotlib.pyplot as plt
 from antenna import *
 from point import *
 from astar_search import *
-
+import time
 import math
 
 class AntennaState(State):
 
-
     threshold = 1000
+    smallDistance = None
 
-    def __init__(self,coordinateList,K,C):
+    def __init__(self,coordinateList,K,C,time):
         self.K = K
         self.C = C
         self.counter = 0
@@ -25,8 +25,10 @@ class AntennaState(State):
         self.pointList = []
         for (x,y) in coordinateList:
 			self.pointList.append(Point(x,y))
+        if self.smallDistance == None:
+            self.smallDistance = self._defineSmallDistance_()
+        self.startTime = time
 
-        self.smallDistance = self._defineSmallDistance_()
 
     #Antenna problem solution search
     #def search(self,points,K,C):
@@ -67,6 +69,9 @@ class AntennaState(State):
         print ("Cost remaining to reach the target:  h(n)= %s" %(self.heuristic()))
         print ("Cost to reach the current state: g(n)= %s" %(self.g()))
         print ("Total cost:  f(n)=%s" %(self.f()))
+
+
+        print ("Running time: %s secons" %(time.time() - self.startTime))
         print ("#Steps=  %s" %(self.counter))
 
         print 'Placed antennas:'
@@ -84,14 +89,15 @@ class AntennaState(State):
 
     # Returns a list of possible actions with the current state
     def possibleActions(self):
+        uncoveredPoints = self.uncoveredPoints()
         actionList = []
         #action 1 : ajouter antenne sur 1 point
-        for point in self.uncoveredPoints():
+        for point in uncoveredPoints:
             actionList.append(('addSimpleAntenna',point))
         #action 2: antenne entre les 2 point les plus proches non couverts
         visitedPoints = []
-        for pt1 in self.uncoveredPoints():
-            for pt2 in self.uncoveredPoints():
+        for pt1 in uncoveredPoints:
+            for pt2 in uncoveredPoints:
                 if pt1 != pt2 and pt2 not in visitedPoints :
                     if self.distanceBetween(pt1, pt2) <= self.smallDistance:
                         actionList.append(('addAntennaBetween2',pt1,pt2))
@@ -103,7 +109,7 @@ class AntennaState(State):
                     #action 3: entre les antennes existantes, ajouter le point le plus proche de l'antenne non couvert
                     actionList.append(('growAntenna',antenna.position))
                     #action 4: entre les antennes existantes, retirer le point le plus loin couvert par l'antenne
-                    actionList.append(('shrinkAntenna',antenna.position))
+                    #actionList.append(('shrinkAntenna',antenna.position))
         return actionList
 
      # State is changed according to action
@@ -128,10 +134,10 @@ class AntennaState(State):
             if nearestPoint != None:
                 antenna = self._antennaAt_(antennaPosition)
                 antenna.addPoint(nearestPoint)
-        elif actionName == 'shrinkAntenna':
-            oldAntennaPosition = action[1]
-            oldAntenna = self._antennaAt_(oldAntennaPosition)
-            oldAntenna.shrink()
+        #elif actionName == 'shrinkAntenna':
+         #   oldAntennaPosition = action[1]
+          #  oldAntenna = self._antennaAt_(oldAntennaPosition)
+           # oldAntenna.shrink()
         else:
             raise Exception('Erreur')
 
@@ -295,15 +301,28 @@ class AntennaState(State):
 
 
 
-import random as rand
 
-initialPoints = [(10,10),(20,20),(30,0),(30,40),(50,40)]
+import random
 
-#initial =
-
-initialState = AntennaState(initialPoints,200,1)
+initial = [(10,10),(20,20),(30,0),(30,40),(50,40)]
 
 
+"""
+X = (random.sample(range(1, 101), 100))
+Y = (random.sample(range(1, 101), 100))
+initial = []
+
+i = 0
+
+
+while i < len(X):
+    initial.append((X[i],Y[i]))
+    i+= 1
+
+print("PointList = %s" %(initial))
+"""
+
+initialState = AntennaState(initial,200,1,time=time.time())
 
 
 
