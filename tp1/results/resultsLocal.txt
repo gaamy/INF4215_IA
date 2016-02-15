@@ -1,0 +1,133 @@
+
+PointList = [(486, 401), (88, 31), (489, 194), (174, 482), (276, 74), (250, 129), (402, 140), (374, 143), (328, 336), (14, 379), (441, 468), (362, 133), (256, 55), (7, 94), (469, 173), (100, 77), (42, 469), (252, 119), (51, 243), (204, 57), (456, 437), (292, 321), (107, 385), (94, 471), (69, 478), (280, 445), (285, 432), (20, 118), (421, 399), (68, 374), (212, 442), (416, 62), (171, 172), (460, 175), (499, 197), (161, 196), (435, 29), (228, 222), (258, 103), (106, 15), (481, 13), (312, 179), (266, 356), (130, 123), (154, 58), (194, 230), (425, 214), (159, 218), (413, 109), (450, 211), (183, 499), (259, 66), (253, 223), (49, 170), (308, 400), (241, 40), (338, 481), (93, 81), (384, 377), (431, 460), (390, 164), (76, 49), (30, 302), (492, 382), (136, 333), (124, 330), (223, 128), (363, 289), (487, 430), (78, 319), (172, 489), (263, 376), (57, 271), (339, 3), (168, 46), (257, 233), (485, 261), (25, 353), (109, 244), (197, 189), (235, 227), (142, 312), (86, 163), (265, 73), (278, 310), (316, 154), (394, 354), (403, 130), (34, 288), (46, 339), (301, 384), (125, 410), (412, 423), (420, 456), (237, 365), (50, 42), (97, 226), (104, 388), (182, 371), (131, 317)]
+Remaining points to cover:  0 
+Cost remaining to reach the target:  h(n)= 0
+Cost to reach the current state: g(n)= 72700.0
+Total cost:  f(n)=72700.0
+#Steps=  100
+Placed antennas:
+---Antenna# 0 position=(454,189) r= 68.7095335452
+---Antenna# 1 position=(282,49) r= 73.2461603089
+---Antenna# 2 position=(312,179) r= 1
+---Antenna# 3 position=(418,84) r= 58.2408791142
+---Antenna# 4 position=(53,272) r= 63.6553218514
+---Antenna# 5 position=(82,457) r= 63.7024332345
+---Antenna# 6 position=(38,361) r= 32.6955654485
+---Antenna# 7 position=(175,53) r= 29.2745623366
+---Antenna# 8 position=(435,451) r= 25.2388589282
+---Antenna# 9 position=(124,330) r= 1
+---Antenna# 10 position=(408,119) r= 12.0830459736
+---Antenna# 11 position=(448,37) r= 40.8044115262
+---Antenna# 12 position=(343,449) r= 73.7360156233
+---Antenna# 13 position=(57,271) r= 1
+---Antenna# 14 position=(471,403) r= 50.1597448159
+---Antenna# 15 position=(244,116) r= 24.1867732449
+---Antenna# 16 position=(228,222) r= 1
+---Antenna# 17 position=(485,261) r= 1
+---Antenna# 18 position=(88,63) r= 18.4390889146
+---Antenna# 19 position=(173,485) r= 4.12310562562
+---Antenna# 20 position=(104,318) r= 27.0185121722
+---Antenna# 21 position=(178,375) r= 75.133215025
+---Antenna# 22 position=(285,432) r= 1
+---Antenna# 23 position=(308,400) r= 1
+---Antenna# 24 position=(105,386) r= 2.2360679775
+---Antenna# 25 position=(207,72) r= 115.974135047
+---Antenna# 26 position=(264,366) r= 10.1980390272
+---Antenna# 27 position=(292,321) r= 1
+---Antenna# 28 position=(210,432) r= 72.2357252334
+---Antenna# 29 position=(197,189) r= 1
+---Antenna# 30 position=(51,243) r= 1
+---Antenna# 31 position=(93,81) r= 1
+---Antenna# 32 position=(136,333) r= 1
+---Antenna# 33 position=(441,468) r= 1
+---Antenna# 34 position=(109,244) r= 1
+---Antenna# 35 position=(67,166) r= 19.2353840617
+---Antenna# 36 position=(301,384) r= 1
+---Antenna# 37 position=(159,218) r= 1
+---Antenna# 38 position=(278,310) r= 1
+---Antenna# 39 position=(345,312) r= 29.4108823397
+---Antenna# 40 position=(69,36) r= 19.9248588452
+---Antenna# 41 position=(374,143) r= 1
+---Antenna# 42 position=(384,377) r= 1
+---Antenna# 43 position=(255,228) r= 5.38516480713
+---Antenna# 44 position=(316,154) r= 1
+---Antenna# 45 position=(161,196) r= 1
+---Antenna# 46 position=(171,172) r= 1
+---Antenna# 47 position=(241,40) r= 1
+---Antenna# 48 position=(130,123) r= 1
+---Antenna# 49 position=(194,230) r= 1
+---Antenna# 50 position=(7,94) r= 1
+---Antenna# 51 position=(362,133) r= 1
+---Antenna# 52 position=(20,118) r= 1
+---Antenna# 53 position=(394,354) r= 1
+---Antenna# 54 position=(235,227) r= 1
+10.4042599201 seconds
+
+
+________________
+Remaining points to cover:  0 
+Cost remaining to reach the target:  h(n)= 0
+Cost to reach the current state: g(n)= 41975.0
+Total cost:  f(n)=41975.0
+#Steps=  100
+Placed antennas:
+---Antenna# 0 position=(68,472) r= 26.1725046566
+---Antenna# 1 position=(302,439) r= 55.3172667438
+---Antenna# 2 position=(75,56) r= 32.6496554346
+---Antenna# 3 position=(447,450) r= 44.72135955
+---Antenna# 4 position=(368,355) r= 44.283179651
+---Antenna# 5 position=(111,102) r= 28.319604517
+---Antenna# 6 position=(473,190) r= 31.1448230048
+---Antenna# 7 position=(191,212) r= 62.9682459657
+---Antenna# 8 position=(32,295) r= 7.28010988928
+---Antenna# 9 position=(35,368) r= 33.5410196625
+---Antenna# 10 position=(241,40) r= 1
+---Antenna# 11 position=(249,370) r= 67.007462271
+---Antenna# 12 position=(88,31) r= 1
+---Antenna# 13 position=(402,135) r= 5.09901951359
+---Antenna# 14 position=(416,411) r= 13.0
+---Antenna# 15 position=(158,44) r= 59.5399025864
+---Antenna# 16 position=(13,106) r= 13.8924439894
+---Antenna# 17 position=(136,320) r= 13.0
+---Antenna# 18 position=(292,321) r= 1
+---Antenna# 19 position=(362,133) r= 1
+---Antenna# 20 position=(107,385) r= 1
+---Antenna# 21 position=(62,329) r= 18.8679622641
+---Antenna# 22 position=(263,376) r= 1
+---Antenna# 23 position=(114,399) r= 15.5563491861
+---Antenna# 24 position=(237,365) r= 1
+---Antenna# 25 position=(252,119) r= 1
+---Antenna# 26 position=(231,224) r= 5.0
+---Antenna# 27 position=(259,66) r= 1
+---Antenna# 28 position=(97,226) r= 1
+---Antenna# 29 position=(435,29) r= 1
+---Antenna# 30 position=(278,310) r= 1
+---Antenna# 31 position=(312,179) r= 1
+---Antenna# 32 position=(189,476) r= 41.0487515035
+---Antenna# 33 position=(416,62) r= 1
+---Antenna# 34 position=(227,211) r= 37.2021504755
+---Antenna# 35 position=(265,73) r= 1
+---Antenna# 36 position=(197,150) r= 34.0587727319
+---Antenna# 37 position=(258,103) r= 1
+---Antenna# 38 position=(174,482) r= 1
+---Antenna# 39 position=(80,243) r= 29.0172362571
+---Antenna# 40 position=(339,3) r= 1
+---Antenna# 41 position=(266,64) r= 14.1421356237
+---Antenna# 42 position=(485,261) r= 1
+---Antenna# 43 position=(316,154) r= 1
+---Antenna# 44 position=(194,230) r= 1
+---Antenna# 45 position=(492,382) r= 1
+---Antenna# 46 position=(481,13) r= 1
+---Antenna# 47 position=(67,166) r= 19.2353840617
+---Antenna# 48 position=(124,330) r= 1
+---Antenna# 49 position=(374,143) r= 1
+---Antenna# 50 position=(390,164) r= 1
+---Antenna# 51 position=(425,214) r= 1
+---Antenna# 52 position=(250,129) r= 1
+---Antenna# 53 position=(486,401) r= 1
+---Antenna# 54 position=(57,271) r= 1
+---Antenna# 55 position=(413,109) r= 1
+---Antenna# 56 position=(363,289) r= 1
+60.1877911091 seconds
+
+

@@ -1,0 +1,238 @@
+
+PointList = [(486, 401), (88, 31), (489, 194), (174, 482), (276, 74), (250, 129), (402, 140), (374, 143), (328, 336), (14, 379), (441, 468), (362, 133), (256, 55), (7, 94), (469, 173), (100, 77), (42, 469), (252, 119), (51, 243), (204, 57), (456, 437), (292, 321), (107, 385), (94, 471), (69, 478), (280, 445), (285, 432), (20, 118), (421, 399), (68, 374), (212, 442), (416, 62), (171, 172), (460, 175), (499, 197), (161, 196), (435, 29), (228, 222), (258, 103), (106, 15), (481, 13), (312, 179), (266, 356), (130, 123), (154, 58), (194, 230), (425, 214), (159, 218), (413, 109), (450, 211), (183, 499), (259, 66), (253, 223), (49, 170), (308, 400), (241, 40), (338, 481), (93, 81), (384, 377), (431, 460), (390, 164), (76, 49), (30, 302), (492, 382), (136, 333), (124, 330), (223, 128), (363, 289), (487, 430), (78, 319), (172, 489), (263, 376), (57, 271), (339, 3), (168, 46), (257, 233), (485, 261), (25, 353), (109, 244), (197, 189), (235, 227), (142, 312), (86, 163), (265, 73), (278, 310), (316, 154), (394, 354), (403, 130), (34, 288), (46, 339), (301, 384), (125, 410), (412, 423), (420, 456), (237, 365), (50, 42), (97, 226), (104, 388), (182, 371), (131, 317)]
+
+
+
+
+----------------
+Remaining points to cover:  31 
+Cost remaining to reach the target:  h(n)= 6200
+Cost to reach the current state: g(n)= 9779.0
+Total cost:  f(n)=15979.0
+Running time: 677.182358027 secons
+#Steps=  38
+Placed antennas:
+---Antenna# 0 position=(105,386) r= 2.2360679775
+---Antenna# 1 position=(176,490) r= 11.401754251
+---Antenna# 2 position=(96,79) r= 4.472135955
+---Antenna# 3 position=(264,67) r= 14.4222051019
+---Antenna# 4 position=(231,224) r= 5.0
+---Antenna# 5 position=(402,135) r= 5.09901951359
+---Antenna# 6 position=(464,174) r= 5.09901951359
+---Antenna# 7 position=(253,117) r= 14.8660687473
+---Antenna# 8 position=(494,195) r= 5.38516480713
+---Antenna# 9 position=(255,228) r= 5.38516480713
+---Antenna# 10 position=(430,461) r= 13.0384048104
+---Antenna# 11 position=(136,314) r= 6.32455532034
+---Antenna# 12 position=(130,331) r= 6.32455532034
+---Antenna# 13 position=(282,438) r= 7.28010988928
+---Antenna# 14 position=(32,295) r= 7.28010988928
+---Antenna# 15 position=(368,138) r= 7.81024967591
+---Antenna# 16 position=(304,392) r= 8.94427191
+---Antenna# 17 position=(285,315) r= 9.21954445729
+---Antenna# 18 position=(161,52) r= 9.21954445729
+---Antenna# 19 position=(264,366) r= 10.1980390272
+---Antenna# 20 position=(489,391) r= 10.4403065089
+---Antenna# 21 position=(82,40) r= 10.8166538264
+---Antenna# 22 position=(103,235) r= 10.8166538264
+---Antenna# 23 position=(160,207) r= 11.0453610172
+---Antenna# 24 position=(416,411) r= 13.0
+---Antenna# 25 position=(389,365) r= 13.0
+---Antenna# 26 position=(437,212) r= 13.0384048104
+---Antenna# 27 position=(35,346) r= 13.0384048104
+---Antenna# 28 position=(314,166) r= 13.152946438
+---Antenna# 29 position=(81,474) r= 13.3416640641
+---Antenna# 30 position=(13,106) r= 13.8924439894
+---Antenna# 31 position=(456,437) r= 1
+---Antenna# 32 position=(481,13) r= 1
+----------------
+
+
+avec 80 points
+
+
+emaining points to cover:  0 
+Cost remaining to reach the target:  h(n)= 0
+Cost to reach the current state: g(n)= 7296.0
+Total cost:  f(n)=7296.0
+Running time: 49.9681668282 secons
+#Steps=  48
+Placed antennas:
+---Antenna# 0 position=(78,55) r= 8.0622577483
+---Antenna# 1 position=(15,90) r= 3.60555127546
+---Antenna# 2 position=(60,41) r= 5.38516480713
+---Antenna# 3 position=(55,11) r= 8.0622577483
+---Antenna# 4 position=(19,52) r= 8.54400374532
+---Antenna# 5 position=(28,46) r= 1.41421356237
+---Antenna# 6 position=(75,34) r= 4.472135955
+---Antenna# 7 position=(59,78) r= 4.12310562562
+---Antenna# 8 position=(90,90) r= 9.21954445729
+---Antenna# 9 position=(13,30) r= 2.2360679775
+---Antenna# 10 position=(81,3) r= 2.2360679775
+---Antenna# 11 position=(31,15) r= 2.2360679775
+---Antenna# 12 position=(96,41) r= 3.16227766017
+---Antenna# 13 position=(41,52) r= 2.2360679775
+---Antenna# 14 position=(67,67) r= 6.7082039325
+---Antenna# 15 position=(31,23) r= 2.2360679775
+---Antenna# 16 position=(40,25) r= 7.28010988928
+---Antenna# 17 position=(3,64) r= 2.82842712475
+---Antenna# 18 position=(65,26) r= 3.0
+---Antenna# 19 position=(4,85) r= 3.16227766017
+---Antenna# 20 position=(13,77) r= 3.16227766017
+---Antenna# 21 position=(52,98) r= 3.16227766017
+---Antenna# 22 position=(53,87) r= 3.16227766017
+---Antenna# 23 position=(93,21) r= 4.0
+---Antenna# 24 position=(92,56) r= 4.12310562562
+---Antenna# 25 position=(70,90) r= 4.12310562562
+---Antenna# 26 position=(22,63) r= 4.12310562562
+---Antenna# 27 position=(82,15) r= 7.07106781187
+---Antenna# 28 position=(41,7) r= 4.472135955
+---Antenna# 29 position=(28,76) r= 7.07106781187
+---Antenna# 30 position=(42,65) r= 7.81024967591
+---Antenna# 31 position=(9,7) r= 9.43398113206
+
+
+
+————80 pts———
+
+Remaining points to cover:  0 
+Cost remaining to reach the target:  h(n)= 0
+Cost to reach the current state: g(n)= 6863.0
+Total cost:  f(n)=6863.0
+Running time: 69.9965059757 secons
+#Steps=  51
+Placed antennas:
+---Antenna# 0 position=(28,26) r= 5.83095189485
+---Antenna# 1 position=(76,30) r= 5.0
+---Antenna# 2 position=(10,52) r= 4.0
+---Antenna# 3 position=(88,78) r= 6.32455532034
+---Antenna# 4 position=(97,62) r= 1.41421356237
+---Antenna# 5 position=(57,16) r= 4.12310562562
+---Antenna# 6 position=(84,57) r= 3.60555127546
+---Antenna# 7 position=(42,83) r= 8.24621125124
+---Antenna# 8 position=(25,87) r= 2.2360679775
+---Antenna# 9 position=(57,97) r= 11.0453610172
+---Antenna# 10 position=(22,72) r= 5.09901951359
+---Antenna# 11 position=(47,92) r= 2.2360679775
+---Antenna# 12 position=(33,89) r= 2.2360679775
+---Antenna# 13 position=(40,7) r= 12.0830459736
+---Antenna# 14 position=(92,43) r= 5.09901951359
+---Antenna# 15 position=(72,47) r= 2.82842712475
+---Antenna# 16 position=(6,16) r= 3.16227766017
+---Antenna# 17 position=(60,61) r= 3.16227766017
+---Antenna# 18 position=(2,6) r= 3.16227766017
+---Antenna# 19 position=(37,37) r= 5.38516480713
+---Antenna# 20 position=(67,78) r= 6.40312423743
+---Antenna# 21 position=(65,4) r= 4.0
+---Antenna# 22 position=(92,22) r= 12.6491106407
+---Antenna# 23 position=(13,36) r= 4.12310562562
+---Antenna# 24 position=(7,68) r= 6.40312423743
+---Antenna# 25 position=(33,66) r= 4.472135955
+---Antenna# 26 position=(15,16) r= 9.0
+---Antenna# 27 position=(87,93) r= 5.38516480713
+---Antenna# 28 position=(45,45) r= 6.40312423743
+
+
+
+avec 100 points random
+----------------
+Remaining points to cover:  0 
+Cost remaining to reach the target:  h(n)= 0
+Cost to reach the current state: g(n)= 9302.0
+Total cost:  f(n)=9302.0
+Running time: 111.39643693 secons
+#Steps=  58
+Placed antennas:
+---Antenna# 0 position=(75,35) r= 7.81024967591
+---Antenna# 1 position=(51,46) r= 1.0
+---Antenna# 2 position=(20,41) r= 4.472135955
+---Antenna# 3 position=(95,48) r= 1.41421356237
+---Antenna# 4 position=(25,61) r= 1.41421356237
+---Antenna# 5 position=(9,27) r= 5.09901951359
+---Antenna# 6 position=(28,41) r= 2.0
+---Antenna# 7 position=(69,95) r= 3.60555127546
+---Antenna# 8 position=(18,53) r= 2.2360679775
+---Antenna# 9 position=(64,58) r= 2.2360679775
+---Antenna# 10 position=(10,63) r= 7.81024967591
+---Antenna# 11 position=(75,86) r= 2.2360679775
+---Antenna# 12 position=(87,78) r= 2.2360679775
+---Antenna# 13 position=(40,95) r= 2.2360679775
+---Antenna# 14 position=(1,93) r= 2.2360679775
+---Antenna# 15 position=(90,36) r= 2.2360679775
+---Antenna# 16 position=(80,59) r= 8.60232526704
+---Antenna# 17 position=(61,69) r= 2.2360679775
+---Antenna# 18 position=(72,26) r= 2.82842712475
+---Antenna# 19 position=(57,34) r= 5.09901951359
+---Antenna# 20 position=(36,18) r= 3.60555127546
+---Antenna# 21 position=(6,3) r= 2.82842712475
+---Antenna# 22 position=(46,86) r= 3.0
+---Antenna# 23 position=(84,50) r= 3.16227766017
+---Antenna# 24 position=(53,78) r= 5.0
+---Antenna# 25 position=(95,22) r= 3.16227766017
+---Antenna# 26 position=(21,12) r= 3.16227766017
+---Antenna# 27 position=(16,79) r= 3.16227766017
+---Antenna# 28 position=(44,69) r= 6.40312423743
+---Antenna# 29 position=(97,70) r= 3.60555127546
+---Antenna# 30 position=(32,84) r= 3.60555127546
+---Antenna# 31 position=(87,90) r= 10.0
+---Antenna# 32 position=(67,76) r= 4.12310562562
+---Antenna# 33 position=(38,44) r= 9.43398113206
+---Antenna# 34 position=(53,99) r= 4.12310562562
+---Antenna# 35 position=(7,17) r= 4.12310562562
+---Antenna# 36 position=(31,5) r= 4.12310562562
+---Antenna# 37 position=(59,11) r= 7.07106781187
+---Antenna# 38 position=(96,5) r= 4.12310562562
+---Antenna# 39 position=(25,23) r= 4.472135955
+---Antenna# 40 position=(43,7) r= 5.09901951359
+---Antenna# 41 position=(84,10) r= 5.65685424949
+Solution  is <node.Node object at 0x1aa5a2210>  
+
+Process finished with exit code 0
+
+
+avec 100 points random avec réduction d’états
+…
+Remaining points to cover:  0 
+Cost remaining to reach the target:  h(n)= 0
+Cost to reach the current state: g(n)= 8176.0
+Total cost:  f(n)=8176.0
+Running time: 114.521002054 secons
+#Steps=  65
+Placed antennas:
+---Antenna# 0 position=(16,25) r= 2.2360679775
+---Antenna# 1 position=(22,94) r= 9.43398113206
+---Antenna# 2 position=(79,44) r= 4.0
+---Antenna# 3 position=(97,51) r= 5.0
+---Antenna# 4 position=(34,76) r= 4.472135955
+---Antenna# 5 position=(67,4) r= 8.0622577483
+---Antenna# 6 position=(45,92) r= 9.43398113206
+---Antenna# 7 position=(94,79) r= 10.0
+---Antenna# 8 position=(9,13) r= 4.24264068712
+---Antenna# 9 position=(81,27) r= 5.65685424949
+---Antenna# 10 position=(53,40) r= 6.0827625303
+---Antenna# 11 position=(67,18) r= 4.472135955
+---Antenna# 12 position=(74,37) r= 2.2360679775
+---Antenna# 13 position=(87,93) r= 4.0
+---Antenna# 14 position=(18,58) r= 2.2360679775
+---Antenna# 15 position=(5,19) r= 2.82842712475
+---Antenna# 16 position=(94,34) r= 2.82842712475
+---Antenna# 17 position=(57,55) r= 7.07106781187
+---Antenna# 18 position=(72,63) r= 6.32455532034
+---Antenna# 19 position=(85,10) r= 3.16227766017
+---Antenna# 20 position=(25,69) r= 7.81024967591
+---Antenna# 21 position=(12,4) r= 3.16227766017
+---Antenna# 22 position=(3,31) r= 3.60555127546
+---Antenna# 23 position=(38,12) r= 5.83095189485
+---Antenna# 24 position=(6,63) r= 3.60555127546
+---Antenna# 25 position=(45,75) r= 3.60555127546
+---Antenna# 26 position=(65,50) r= 4.12310562562
+---Antenna# 27 position=(32,48) r= 9.21954445729
+---Antenna# 28 position=(5,86) r= 4.24264068712
+---Antenna# 29 position=(46,26) r= 9.21954445729
+---Antenna# 30 position=(25,32) r= 4.24264068712
+---Antenna# 31 position=(38,62) r= 4.472135955
+---Antenna# 32 position=(87,67) r= 4.472135955
+---Antenna# 33 position=(60,83) r= 9.21954445729
+---Antenna# 34 position=(55,5) r= 5.09901951359
+Solution  is <node.Node object at 0x1b0802450>  
+
