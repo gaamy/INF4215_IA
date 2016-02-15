@@ -81,17 +81,23 @@ class AntennaState(State):
     def possibleActions(self):
         uncoveredPoints = self.uncoveredPoints()
         actionList = []
-        #action 1 : ajouter antenne sur 1 point
-        for point in uncoveredPoints:
-            actionList.append(('addSimpleAntenna',point))
-        #action 2: antenne entre les 2 point les plus proches non couverts
+
+        #action 1: antenne entre les 2 point les plus proches non couverts
+        possiblyCovered = []
         visitedPoints = []
         for pt1 in uncoveredPoints:
             for pt2 in uncoveredPoints:
                 if pt1 != pt2 and pt2 not in visitedPoints :
                     if self.distanceBetween(pt1, pt2) <= self.smallDistance:
                         actionList.append(('addAntennaBetween2',pt1,pt2))
+                        possiblyCovered.extend([pt1,pt2])
             visitedPoints.append(pt1)
+
+        #action 2 : ajouter antenne sur 1 point
+
+        for point in list(set(uncoveredPoints) - set(uncoveredPoints)):
+            actionList.append(('addSimpleAntenna',point))
+
         #action 3 et 4
         if len(self.antennaList) > 0:
             for antenna in self.antennaList:
@@ -171,12 +177,6 @@ class AntennaState(State):
     # cost to achieve the goal. By default, value is 0
     def heuristic(self):
         if self.coveredPoints() != None:
-
-
-            e = len(self.pointList)
-            t = self.coveredPoints()
-            a = len(t)
-
             amountOfRemainingPoints = len(self.pointList) - len(self.coveredPoints())
             return amountOfRemainingPoints * self.K
         else:
@@ -294,20 +294,18 @@ class AntennaState(State):
 
 import random
 
-#initial = [(10,10),(20,20),(30,0),(30,40),(50,40)]
+initial = [(10,10),(20,20),(30,0),(30,40),(50,40)]
 
 
 
-X = (random.sample(range(1, 100), 80))
-Y = (random.sample(range(1, 100), 80))
-initial = []
+#X = (random.sample(range(1, 501), 200))
+#Y = (random.sample(range(1, 501), 200))
+#initial = []
 
-i = 0
-
-
-while i < len(X):
-    initial.append((X[i],Y[i]))
-    i+= 1
+#i = 0
+#while i < len(X):
+  #  initial.append((X[i],Y[i]))
+   # i+= 1
 
 print("PointList = %s" %(initial))
 

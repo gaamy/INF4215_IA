@@ -43,15 +43,6 @@ class AlgorithmeRecuitState(State):
 
         self.smallDistance = self._defineSmallDistance_()
 
-    #Antenna problem solution search
-    #def search(self,points,K,C):
-
-        #self.K = K
-        #self.C = C
-        #self.pointList = points
-        #self.smallDistance = self._defineSmallDistance_()
-        #return  astar_search(self)
-
 
 
     # Checks whether current state and the one passed as parameter are exactly the same
@@ -195,12 +186,6 @@ class AlgorithmeRecuitState(State):
     # cost to achieve the goal. By default, value is 0
     def heuristic(self):
         if self.coveredPoints() != None:
-
-
-            e = len(self.pointList)
-            t = self.coveredPoints()
-            a = len(t)
-
             amountOfRemainingPoints = len(self.pointList) - len(self.coveredPoints())
             return amountOfRemainingPoints * self.K
         else:
@@ -278,11 +263,7 @@ class AlgorithmeRecuitState(State):
         else:
             return None
 
-    # Return the coordinate in between 2 points
-    #def _middlePoint_(self,point1,point2):
-        #xm = (point1[0]+point2[0])/float(2)
-        #ym = (point1[1]+point2[1])/float(2)
-        #return (xm,ym)
+
 
     #return the antenna object at the position received
     def _antennaAt_(self,coordinate):
