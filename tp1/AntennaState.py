@@ -14,7 +14,6 @@ import math
 
 class AntennaState(State):
 
-    threshold = 1000
     smallDistance = None
 
     def __init__(self,coordinateList,K,C,time):
@@ -30,16 +29,6 @@ class AntennaState(State):
         self.startTime = time
 
 
-    #Antenna problem solution search
-    #def search(self,points,K,C):
-
-        #self.K = K
-        #self.C = C
-        #self.pointList = points
-        #self.smallDistance = self._defineSmallDistance_()
-        #return  astar_search(self)
-
-
 
     # Checks whether current state and the one passed as parameter are exactly the same
     def equals(self,state):
@@ -53,12 +42,13 @@ class AntennaState(State):
     # The alternative is to stop searching after a predetermined amount of
     # actions verifying if we covered all the points
     def isGoal(self):
-        return False
-        #if self.counter > self.threshold and self.coveredPoints == len(self.pointList):
+        #runingTime = time.time() - self.startTime
+        if self.coveredPoints():
+            if len(self.coveredPoints()) == len(self.pointList):
         #if self.counter > self.threshold :
-            #return True
-        #else:
-            #return False
+                return True
+        else:
+            return False
 
     # Prints to the console a description of the state
     def show(self):
@@ -135,9 +125,9 @@ class AntennaState(State):
                 antenna = self._antennaAt_(antennaPosition)
                 antenna.addPoint(nearestPoint)
         #elif actionName == 'shrinkAntenna':
-         #   oldAntennaPosition = action[1]
-          #  oldAntenna = self._antennaAt_(oldAntennaPosition)
-           # oldAntenna.shrink()
+           # oldAntennaPosition = action[1]
+           # oldAntenna = self._antennaAt_(oldAntennaPosition)
+            #oldAntenna.shrink()
         else:
             raise Exception('Erreur')
 
@@ -308,8 +298,8 @@ import random
 
 
 
-X = (random.sample(range(1, 301), 300))
-Y = (random.sample(range(1, 301), 300))
+X = (random.sample(range(1, 100), 80))
+Y = (random.sample(range(1, 100), 80))
 initial = []
 
 i = 0
@@ -322,7 +312,7 @@ while i < len(X):
 print("PointList = %s" %(initial))
 
 
-initialState = AntennaState(initial,200,1,time=time.time())
+initialState = AntennaState(initial,200,1,time.time())
 
 
 

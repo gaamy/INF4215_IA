@@ -1,6 +1,7 @@
 import math
 
 from point import *
+import random
 
 class Antenna:
 
@@ -38,6 +39,14 @@ class Antenna:
         else:
             self.position = self.centroid(self.affectedPoints)
             self.radius = self.distanceBetween(self.position,self.farPoint())
+
+    def growRandom(self,pointList,maxRWorth):
+        self.radius += random.randint(1, int(maxRWorth))
+        for point in pointList:
+            if self.distanceBetween(self.position,point) <= self.radius:
+                self.affectedPoints.append(point)
+                #self.updateAntenna()
+
 
 
     #return the central point of a group of points
